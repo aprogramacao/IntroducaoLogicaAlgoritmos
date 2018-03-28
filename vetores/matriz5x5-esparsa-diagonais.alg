@@ -1,11 +1,11 @@
 algoritmo "matriz5x5-esparsa-diagonais"
-// Função : Declare uma matriz 5 x 5 de números inteiros. Preencha com o número
+// FunÃ§Ã£o : Declare uma matriz 5 x 5 de nÃºmeros inteiros. Preencha com o nÃºmero
 //          <1> as diagonais e com <0> os demais elementos. Escreva ao final a
 //          matriz obtida.
 // Autor : Luiz Fernando Maia
 // Data : 28/03/2018
 var
-matriz: vetor[0..4, 0..5] de inteiro
+matriz: vetor[0..4, 0..4] de inteiro
 linha, coluna: inteiro
 inicio
 para linha de 0 ate 4 faca
