@@ -6,7 +6,7 @@ algoritmo "IdadePeso15Pessoas"
 // Autor : Luiz Fernando Maia
 // Data : 28/03/2018
 // Seção de Declarações
-arquivo "IdadesPesos15Pessoas.dat"
+arquivo "IdadesPesos.dat"
 var
 contador : inteiro
 idade : inteiro
@@ -14,10 +14,14 @@ peso : real
 indiceFaixa : inteiro
 pesoTotalPorFaixa : vetor[1..4] de real
 quantidadePorFaixa : vetor[1..4] de inteiro
+faixas : vetor[1..4] de caractere
 inicio
+faixas[1] <- "de 1 até 10 anos"
+faixas[2] <- "de 11 até 20 anos"
+faixas[3] <- "de 21 até 30 anos"
+faixas[4] <- "acima de 31 anos"
 para contador de 1 ate 15 faca
    leia(idade)
-   leia(peso)
    se (peso <= 0.0)
       escreval("Arquivo contém dados inválidos.")
       interrompa
