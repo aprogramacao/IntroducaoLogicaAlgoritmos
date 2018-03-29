@@ -8,46 +8,53 @@ algoritmo "IdadePeso15Pessoas"
 // Seção de Declarações
 arquivo "IdadesPesos.dat"
 var
-contador : inteiro
-idade : inteiro
-peso : real
-indiceFaixa : inteiro
-pesoTotalPorFaixa : vetor[1..4] de real
-quantidadePorFaixa : vetor[1..4] de inteiro
-faixas : vetor[1..4] de caractere
+   erro: logico
+   contador, idade, indiceFaixa : inteiro
+   peso : real
+   pesoTotalPorFaixa : vetor[1..4] de real
+   quantidadePorFaixa : vetor[1..4] de inteiro
+   faixas : vetor[1..4] de caractere
 inicio
-faixas[1] <- "de 1 até 10 anos"
-faixas[2] <- "de 11 até 20 anos"
-faixas[3] <- "de 21 até 30 anos"
-faixas[4] <- "acima de 31 anos"
-para contador de 1 ate 15 faca
-   leia(idade)
-   se (peso <= 0.0)
-      escreval("Arquivo contém dados inválidos.")
-      interrompa
-   fimse
-   se (idade < 0) entao
-      escreval("Arquivo contém dados inválidos.")
-      interrompa
-   senao
-      se (idade <= 10) entao
-         indiceFaixa <- 1
+   faixas[1] <- "de 1 até 10 anos"
+   faixas[2] <- "de 11 até 20 anos"
+   faixas[3] <- "de 21 até 30 anos"
+   faixas[4] <- "acima de 31 anos"
+   erro <- falso
+   para contador de 1 ate 15 faca
+      leia(idade)
+      se (idade <= 0) entao
+         erro <- verdadeiro
+         escreval("Arquivo contém dados inválidos. Contador: ", contador, " Idade: ", idade)
+         interrompa
       senao
-         se (idade <= 20) entao
-            indiceFaixa <- 2
+         se (idade <= 10) entao
+            indiceFaixa <- 1
          senao
-            se (idade <= 30) entao
-               indiceFaixa <- 3
+            se (idade <= 20) entao
+               indiceFaixa <- 2
             senao
-               indiceFaixa <- 4
+               se (idade <= 30) entao
+                  indiceFaixa <- 3
+               senao
+                  indiceFaixa <- 4
+               fimse
             fimse
          fimse
+         quantidadePorFaixa[indiceFaixa] <- quantidadePorFaixa[indiceFaixa] + 1
+         leia(peso)
+         se (peso <= 0.0) entao
+            erro <- verdadeiro
+            escreval("Arquivo contém dados inválidos. Contador: ", contador, " Peso: ", peso)
+            interrompa
+         fimse
+         pesoTotalPorFaixa[indiceFaixa] <- pesoTotalPorFaixa[indiceFaixa] + peso
       fimse
-      quantidadePorFaixa[indiceFaixa] <- quantidadePorFaixa[indiceFaixa] + 1
-      pesoTotalPorFaixa[indiceFaixa] <- pesoTotalPorFaixa[indiceFaixa] + peso
    fimpara
-   para indiceFaixa de 1 ate 4 faca
-      escreval("Média dos pesos das pessoas da faixa ",
-      indiceFaixa, ": ", pesoTotalPorFaixa[indiceFaixa] / quantidadePorFaixa[indiceFaixa])
-   fimpara
+   se (nao erro) entao
+      para indiceFaixa de 1 ate 4 faca
+         escreva("Média dos pesos das pessoas da faixa ", indiceFaixa, ": ")
+         escreval(pesoTotalPorFaixa[indiceFaixa] / quantidadePorFaixa[indiceFaixa])
+      fimpara
+   fimse
 fimalgoritmo
+
